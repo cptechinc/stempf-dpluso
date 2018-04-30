@@ -1,19 +1,31 @@
-# Build and Release Folders
-bin/
-bin-debug/
-bin-release/
-[Oo]bj/ # FlashDevelop obj
-[Bb]in/ # FlashDevelop bin
+# DW Dreamweaver added files
+_notes
+_compareTemp
+dwsync.xml
+dw_php_codehinting.config
+*.mno
 
-# Other files and folders
-.settings/
+# Test Files
+custpricecodetbl.json
+salespersontbl.json
+site/templates/content/ajax/json/test-json.php
+site/templates/template-test.php
+site/templates/redir/test-redir.php
 
-# Executables
-*.swf
-*.air
-*.ipa
-*.apk
+# Processwire Directories
+site/modules
+site/assets
+wire
 
-# Project files, i.e. `.project`, `.actionScriptProperties` and `.flexProperties`
-# should NOT be excluded as they contain compiler settings and other important
-# information for Eclipse / Flash Builder.
+# Project Configurations
+.ftpconfig
+.ftpignore
+site/config.php
+project.cson
+site/templates/config/customer/
+index.php
+vendor/composer
+
+# Customer Configs
+vendor/cptechinc/dpluso-screen-formatters/src/default
+vendor/cptechinc/dpluso-screen-formatters/src/examples
