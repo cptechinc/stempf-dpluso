@@ -2,8 +2,8 @@
     $activetab = 'quotehead';
     if ($input->get->show) { $activetab = $input->get->text('show'); }
     $tabs = array(
-        'quotehead' => array('href' => 'quotehead', "id" => 'quotehead-link', 'text' => 'Quote Header', 'tabcontent' => 'edit/quotes/quotehead-form.php'),
-        'details' => array('href' => 'details', "id" => 'quotedetail-link', 'text' => 'Quote Details', 'tabcontent' => 'edit/quote-to-order/quote-details/details-page.php')
+        'quotehead' => array('href' => 'quotehead', "id" => 'quotehead-link', 'text' => 'Quote Header', 'tabcontent' => $config->paths->content.'edit/quotes/quotehead-form.php'),
+        'details' => array('href' => 'details', "id" => 'quotedetail-link', 'text' => 'Quote Details', 'tabcontent' => $config->paths->content.'edit/quote-to-order/quote-details/details-page.php')
     );
 ?>
 <?php if (!$editquotedisplay->canedit) : ?>
