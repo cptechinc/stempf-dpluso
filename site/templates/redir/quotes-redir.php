@@ -286,6 +286,7 @@ use Purl\Url;
 			$quotedetail->set('quotqty', $qty);
 			$quotedetail->set('ordrqty', $qty);
 			$quotedetail->set('quotprice', $input->post->text('price'));
+			$quotedetail->set('ordrprice', $input->post->text('price'));
 			$quotedetail->set('rshipdate', $input->post->text('rqstdate'));
 			$session->sql = $quotedetail->update();
 
@@ -317,6 +318,7 @@ use Purl\Url;
 
 			$quotedetail = QuoteDetail::load(session_id(), $qnbr, $linenbr);
 			$quotedetail->set('quotprice', $input->post->text('price'));
+			$quotedetail->set('ordrprice', $input->post->text('price'));
 			$quotedetail->set('discpct', $input->post->text('discount'));
 			$quotedetail->set('quotqty', $qty);
 			$quotedetail->set('ordrqty', $qty);
