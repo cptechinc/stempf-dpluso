@@ -3566,11 +3566,11 @@
 		ITEM MASTER FUNCTIONS
 	============================================================ */
 	function search_items($query, $custID, $limit, $page, $debug = false) {
-		$search = '%'.str_replace(' ', '%', $query).'%';
+		$search = QueryBuilder::generate_searchkeyword($query);
 		$q = (new QueryBuilder())->table('itemsearch');
 
 		if (empty($custID)) {
-			$q->where('origintype', ['I', 'V']);
+			$q->where('origintype', ['I', 'V', 'L']);
 			$q->where(
 		        $q
 		        ->orExpr()
@@ -3578,14 +3578,14 @@
 		        ->where($q->expr("UCASE(CONCAT(itemid, ' ', refitemid, ' ', desc1, ' ', desc2))"), 'like', $q->expr("UCASE([])",[$search]))
 		    );
 		} else {
-			$q->where('origintype', ['I', 'V', 'C']);
+			$q->where('origintype', ['I', 'V', 'L', 'C']);
 			$q->where($q->expr("UCASE(CONCAT(itemid, ' ', refitemid, ' ', desc1, ' ', desc2))"), 'like', $q->expr("UCASE([])",[$search]));
 		}
 		$q->order($q->expr("itemid LIKE UCASE([]) DESC", [$search]));
 		$q->group('itemid');
 		$q->limit($limit, $q->generate_offset($page, $limit));
 
-		$sql = Processwire\wire('database')->prepare($q->render());
+		$sql = DplusWire::wire('database')->prepare($q->render());
 
 		if ($debug) {
 			return $q->generate_sqlquery($q->params);
@@ -3596,13 +3596,13 @@
 		}
 	}
 
-	function count_searchitems($q, $custID, $debug = false) {
-		$search = '%'.str_replace(' ', '%', $q).'%';
+	function count_searchitems($query, $custID, $debug = false) {
+		$search = QueryBuilder::generate_searchkeyword($query);
 		$q = (new QueryBuilder())->table('itemsearch');
 		$q->field('COUNT(DISTINCT(itemid))');
 
 		if (empty($custID)) {
-			$q->where('origintype', ['I', 'V']);
+			$q->where('origintype', ['I', 'V', 'L']);
 			$q->where(
 		        $q
 		        ->orExpr()
@@ -3610,10 +3610,10 @@
 		        ->where($q->expr("UCASE(CONCAT(itemid, ' ', refitemid, ' ', desc1, ' ', desc2))"), 'like', $q->expr("UCASE([])",[$search]))
 		    );
 		} else {
-			$q->where('origintype', ['I', 'V', 'C']);
+			$q->where('origintype', ['I', 'V', 'L', 'C']);
 			$q->where($q->expr("UCASE(CONCAT(itemid, ' ', refitemid, ' ', desc1, ' ', desc2))"), 'like', $q->expr("UCASE([])",[$search]));
 		}
-		$sql = Processwire\wire('database')->prepare($q->render());
+		$sql = DplusWire::wire('database')->prepare($q->render());
 
 		if ($debug) {
 			return $q->generate_sqlquery($q->params);
