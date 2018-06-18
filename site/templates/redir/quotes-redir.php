@@ -219,13 +219,7 @@ use Purl\Url;
 		case 'add-to-quote':
 			$qnbr = $input->post->text('qnbr');
 			$itemID = $input->post->text('itemID');
-			if ($modules->isInstalled('QtyPerCase')) {
-				$qtypercase = $modules->get('QtyPerCase');
-				$qty = $qtypercase->generate_qtyfromcasebottle($itemID, $input->post->text('bottle-qty'), $input->post->text('case-qty'));
-			} else {
-				$qty = $input->post->text('qty');
-			}
-			$qty = empty(trim($qty, '.')) ? 1 : $qty;
+			$qty = determine_qty($input, $requestmethod, $itemID);
 			$data = array('DBNAME' => $config->dbName, 'UPDATEQUOTEDETAIL' => false, 'QUOTENO' => $qnbr, 'ITEMID' => $itemID, 'QTY' => "$qty");
 			$session->loc = $config->pages->edit."quote/?qnbr=".$qnbr;
 			$session->editdetail = true;
