@@ -51,9 +51,10 @@
 	                $dplusfunction = 'ci';
 
 	                if ($input->urlSegment(2)) {
-	                    $page->title = "Customer $custID Ship-to: $shiptoID Not Found";
+	                    $page->title = "Customer $custID Ship-to: $shipID Not Found";
 	                }
 	                $page->body = $config->paths->content."customer/ajax/load/cust-index/search-form.php";
+					
 	            }
 			} else {
 				$toolbar = false;

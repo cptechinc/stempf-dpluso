@@ -1,3 +1,4 @@
+<?= $actionpanel->get_actions(true); ?>
 <table class="table table-bordered table-condensed table-striped">
     <tr>
         <th>Due</th> <th>Subtype</th> <th>Regarding / Title</th> <th>View / Complete</th>

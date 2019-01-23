@@ -1,7 +1,6 @@
 <?php
 	$filteron = $input->urlSegment(2);
-	$qnbr = $input->get->text('qnbr');
-	
+	if ($input->get->qnbr) { $qnbr = $input->get->text('qnbr'); } else { $qnbr = NULL; }
 	switch ($filteron) {
 		case 'cust':
 			$custID = $sanitizer->text($input->urlSegment(3));
@@ -13,17 +12,8 @@
 			}
 			$page->body = $config->paths->content.'customer/cust-page/quotes/quotes-panel.php';
 			break;
-		case 'customer':
-			$custID = $sanitizer->text($input->urlSegment(3));
-			$shipID = '';
-			if ($input->urlSegment(4)) {
-				if (strpos($input->urlSegment(4), 'shipto') !== false) {
-					$shipID = str_replace('shipto-', '', $input->urlSegment(4));
-				}
-			}
-			$page->body = $config->paths->content.'customer/cust-page/quotes/quotes-panel.php';
-			break;
-		case 'search':
+		case 'search': //TODO
+			//$include = $config->paths->content.'recent-orders/ajax/load/order-search-modal.php'; //FIX
             $searchtype = $sanitizer->text($input->urlSegment(3));
             switch ($searchtype) {
                 case 'cust':

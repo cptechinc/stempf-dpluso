@@ -8,7 +8,7 @@
 <?php endif; ?>
 <div class="row">
 	<div class="col-sm-12">
-		<?php include $config->paths->content.'dashboard/sales-panel.php'; ?>
+		<?php //include $config->paths->content.'dashboard/sales-panel.php'; ?>
 	</div>
 </div>
 <div class="row">
